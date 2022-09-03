@@ -1,0 +1,30 @@
+.header_nav{
+    background: #1c1c1c;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Roboto', 'Sans serif';
+    height: 9%;
+}
+.header_nav .contenedor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.header_nav h1{
+    color: #fff;
+}
+
+.header_nav nav a{
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}

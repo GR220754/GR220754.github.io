@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondo animado</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="bg_animate">
+        <div class="header_nav">
+            <div class="contenedor">
+                <h1>Efecto Burbuja</h1>
+                <nav>
+                    <a href="index.html">Inicio</a>
+                    <a href="formulario.html">Inscribete</a>
+                    <a href="formulario.html">Contactanos</a>
+                </nav>
+            </div>
+        </div>
+
+        <section class="banner contenedor">
+            <secrion class="banner_title">
+                <h2>Universidad Don Bosco<br>DAW404 G01T</h2>
+                <a href="#" class="Escribenos">Escribenos<br>(Formulario con bootstrap)</a>
+            </secrion>
+            <div class="banner_img">
+                <img src="img/Logo.png" alt="">
+            </div>
+        </section>
+
+        <div class="Cuadros">
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+            <div class="Cuadro"></div>
+        </div>
+    </header>
+    <div class="Alcanzalo">
+    <h2>Alcanzalo!</h2>
+    </div>
+     <canvas width="800" height="600" id="canvas"></canvas>
+  <script>
+    //tamaño de la bola
+    const radio = 25; 
+    /* La altura y anchura tienen que ser iguales a la del canva, 
+    para que pueda realizar el efecto de rebote */
+    const width = 800; 
+    const height = 600;
+    //velocidad de la bola
+    const velocidad = 15;
+
+    //captura la cordenada
+    const cordenadas = { x: width / 2, y: height / 2 };
+    //agrefa velocidad y movimiento aleatorio
+    const delta = {
+      x: Math.random() * velocidad * 2 - velocidad,
+      y: Math.random() * velocidad * 2 - velocidad
+    };
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    //funcion que realiza los rebotes
+    function rebote() {
+      const newx = cordenadas.x + delta.x;
+      const newy = cordenadas.y + delta.y;
+
+      if (newx > width - radio || newx < radio)
+        delta.x = -delta.x;
+
+      if (newy > height - radio || newy < radio)
+        delta.y = - delta.y;
+
+      cordenadas.x = newx;
+      cordenadas.y = newy;
+
+      requestAnimationFrame(bola);
+      setTimeout(rebote, 5);
+    }
+
+    //funcion que dibuja la bola 
+    function bola() {
+      ctx.fillStyle = "black";
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.arc(cordenadas.x, cordenadas.y, radio, 0, Math.PI * 2, 1);
+      ctx.fill();
+    }
+
+    rebote();
+  </script>
+</body>
+</html>
